@@ -1,21 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+/*
+1. expo init projName
+2. cd projName
+3. yarn add redux react-redux
+ */
 
-export default function App() {
+import React from 'react'
+
+
+import { Provider } from 'react-redux'
+
+import  store from './src/store'
+
+import { default as MyApp } from './src'
+
+export default () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <Provider store={store}>
+      <MyApp />
+    </Provider>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
+
+
+//cuando importamos store recibimos en el store el estado de nuestra aplicacion, ya que el estore al momento de ser creado le pasamos la combinacion de nuestros reducers functions las cuales se encuentran en todos.js
+//Cada reducer combinado por la funcion combineReducers y pasado store, tiene sus propiedades y dentro de las propiedades estan las funciones que actualizan nuestro estado.
